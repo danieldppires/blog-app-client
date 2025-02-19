@@ -1,1 +1,12 @@
 @import "tailwindcss";
+
+body {
+	background-color: #E6E6FF;
+	width: 100vw;
+	overflow-x: hidden;
+	font-family: "Montserrat", sans-serif;
+}
+
+.animatedButton {
+	animation-duration: 10000ms;
+}
