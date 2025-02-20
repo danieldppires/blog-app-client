@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import MainCategories from "../components/MainCategories";
 import FeaturedPosts from "../components/FeaturedPosts";
+import PostList from "../components/PostList";
 
 const Homepage = () => {
 	return (
@@ -11,6 +12,7 @@ const Homepage = () => {
 				<span>·</span>
 				<span className="text-cyan-600">Blogs and Articles</span>
 			</div>
+
 			{/* INTRODUCTION */}
 			<div className="flex items-center justify-between">
 				{/* titles */}
@@ -23,6 +25,7 @@ const Homepage = () => {
 						impedit.
 					</p>
 				</div>
+
 				{/* animated button */}
 				<Link to="write" className="relative hidden md:block">
 					<svg
@@ -70,7 +73,11 @@ const Homepage = () => {
 
 			<MainCategories />
 			<FeaturedPosts />
-			{/* POST LIST */}
+
+			<div className="">
+				<h3 className="my-8 text-2xl text-gray-600">Recent Posts</h3>
+				<PostList />
+			</div>
 		</div>
 	);
 };
