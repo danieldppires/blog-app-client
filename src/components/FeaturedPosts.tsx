@@ -23,14 +23,14 @@ const FeaturedPosts = () => {
 
 				<div className="flex items-center gap-4">
 					<h2 className="font-semibold text-sm lg:text-base">01.</h2>
-					<Link to="/" className="text-cyan-600 text-sm lg:text-base">
+					<Link to="/posts/test" className="text-cyan-600 text-sm lg:text-base">
 						Web Design
 					</Link>
 					<span className="text-gray-500 text-sm">2 days ago</span>
 				</div>
 
 				<Link
-					to="/test"
+					to="/posts/test"
 					className="text-xl md:text-3xl lg:text-3xl font-semibold lg:font-bold"
 				>
 					Lorem ipsum dolor sit amet consectetur adipisicing elit.
@@ -53,14 +53,14 @@ const FeaturedPosts = () => {
 						{/* details */}
 						<div className="flex items-center gap-4 text-sm mb-2 md:mb-4">
 							<h2 className="font-semibold">02.</h2>
-							<Link to="/" className="text-cyan-600">
+							<Link to="/posts/test" className="text-cyan-600">
 								Development
 							</Link>
 							<span className="text-gray-500 text-xs">2 days ago</span>
 						</div>
 						<div className="line-clamp-3 xl:line-clamp-4">
 							<Link
-								to="/test"
+								to="/posts/test"
 								className="text-base sm:text-lg md:text-2xl lg:text-xl font-medium"
 							>
 								Officiis cupiditate maxime ipsum odit! Perspiciatis hic nemo
@@ -84,14 +84,14 @@ const FeaturedPosts = () => {
 						{/* details */}
 						<div className="flex items-center gap-4 text-sm mb-2 md:mb-4">
 							<h2 className="font-semibold">03.</h2>
-							<Link to="/" className="text-cyan-600">
+							<Link to="/posts/test" className="text-cyan-600">
 								Web Design
 							</Link>
 							<span className="text-gray-500 text-xs">2 days ago</span>
 						</div>
 						<div className="line-clamp-3 xl:line-clamp-4">
 							<Link
-								to="/test"
+								to="/posts/test"
 								className="text-base sm:text-lg md:text-2xl lg:text-xl font-medium"
 							>
 								Voluptate enim debitis porro nobis iure corrupti mollitia
@@ -115,14 +115,14 @@ const FeaturedPosts = () => {
 						{/* details */}
 						<div className="flex items-center gap-4 text-sm mb-2 md:mb-4">
 							<h2 className="font-semibold">04.</h2>
-							<Link to="/" className="text-cyan-600">
+							<Link to="/posts/test" className="text-cyan-600">
 								Search Engines
 							</Link>
 							<span className="text-gray-500 text-xs">2 days ago</span>
 						</div>
 						<div className="line-clamp-3 xl:line-clamp-4">
 							<Link
-								to="/test"
+								to="/posts/test"
 								className="text-base sm:text-lg md:text-2xl lg:text-xl font-medium"
 							>
 								Aliquid voluptate saepe quod quis neque assumenda mollitia eaque

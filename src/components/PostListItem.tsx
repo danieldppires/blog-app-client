@@ -14,18 +14,18 @@ const PostListItem = () => {
 
 			{/* details */}
 			<div className="flex flex-col gap-4 xl:w-2/3">
-				<Link to="/" className="text-2xl md:text-3xl font-semibold">
+				<Link to="/posts/test" className="text-2xl md:text-3xl font-semibold">
 					Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima magnam
 					autem voluptatem, cum sit enim tempora.
 				</Link>
 
 				<div className="flex items-center gap-2 text-gray-400 text-sm">
 					<span>Written by</span>
-					<Link to="/" className="text-cyan-600">
+					<Link to="/posts/test" className="text-cyan-600">
 						John Doe
 					</Link>
 					<span>on</span>
-					<Link to="/" className="text-cyan-600">
+					<Link to="/posts/test" className="text-cyan-600">
 						Web Design
 					</Link>
 					<span>2 days ago</span>
@@ -38,7 +38,7 @@ const PostListItem = () => {
 					laudantium eaque harum dolorum.
 				</p>
 
-				<Link to="/" className="text-cyan-600 underline text-xs">
+				<Link to="/posts/test" className="text-cyan-600 underline text-xs">
 					Read More
 				</Link>
 			</div>

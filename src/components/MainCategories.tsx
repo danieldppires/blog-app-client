@@ -5,7 +5,7 @@ const MainCategories = () => {
 	return (
 		<div
 			className="flex bg-white rounded-full p-3 shadow-lg items-center 
-			justify-center gap-6"
+			justify-center gap-6 sticky top-0"
 		>
 			{/* links */}
 			<div className="hidden flex-1 md:flex items-center flex-wrap">
