@@ -75,7 +75,7 @@ const Homepage = () => {
 			<FeaturedPosts />
 
 			<div className="">
-				<h3 className="my-8 text-2xl text-gray-600">Recent Posts</h3>
+				<h3 className="my-8 md:my-12 text-2xl text-gray-600">Recent Posts</h3>
 				<PostList />
 			</div>
 		</div>

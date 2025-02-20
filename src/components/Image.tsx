@@ -3,8 +3,8 @@ import { IKImage } from "imagekitio-react";
 interface Props {
 	src: string;
 	className?: string;
-	w?: number | string;
-	h?: number | string;
+	w?: string;
+	h?: string;
 	alt?: string;
 }
 
@@ -25,6 +25,12 @@ const Image = ({
 			width={w}
 			height={h}
 			className={className}
+			transformation={[
+				{
+					width: w,
+					height: h,
+				},
+			]}
 		/>
 	);
 };

@@ -6,7 +6,20 @@ const FeaturedPosts = () => {
 		<div className="mt-8 flex flex-col lg:flex-row gap-8">
 			{/* First */}
 			<div className="w-full lg:w-1/2 flex flex-col gap-4">
-				<Image src="featured1.jpeg" className="rounded-3xl object-cover" />
+				<Image
+					src="featured1.jpeg"
+					className="rounded-3xl object-cover"
+					w="895"
+					// O ideal é colocar o tamanho máximo que a imagem poderá ter
+					// O usuário poderá fazer o upload de uma imagem bem grande, mas se ela
+					// só vai ser exibida no website até o tamanho X, podemos fazer com que
+					// ela seja transformada para aquele tamanho afim de ficar bem mais leve
+					// O cálculo do tamanho máximo da image foi feito da seguinte maneira:
+					// Tamanho do breakpoint onde a imagem estará visível e tamanho do seu
+					// container - padding e margin. No caso desta imagem, o breakpoint onde
+					// ela tem a maior largura é o xl com 1023. A conta aqui foi 1023 - 128 (padding)
+					// de 64 de cada lado. Logo, o tamanho máximo dela será 895.
+				/>
 
 				<div className="flex items-center gap-4">
 					<h2 className="font-semibold text-sm lg:text-base">01.</h2>
@@ -28,10 +41,13 @@ const FeaturedPosts = () => {
 			<div className="w-full lg:w-1/2 flex flex-col gap-4">
 				{/* Second */}
 				<div className="lg:h-1/3 flex justify-between gap-4">
-					<Image
-						src="featured2.jpeg"
-						className="rounded-3xl object-cover w-1/3 aspect-video"
-					/>
+					<div className="w-1/3 aspect-video">
+						<Image
+							src="featured2.jpeg"
+							className="rounded-3xl object-cover w-full h-full"
+							w="298"
+						/>
+					</div>
 					{/* details and title*/}
 					<div className="w-2/3">
 						{/* details */}
@@ -54,10 +70,13 @@ const FeaturedPosts = () => {
 
 				{/* Third */}
 				<div className="lg:h-1/3 flex justify-between gap-4">
-					<Image
-						src="featured3.jpeg"
-						className="rounded-3xl object-cover w-1/3 aspect-video"
-					/>
+					<div className="w-1/3 aspect-video">
+						<Image
+							src="featured3.jpeg"
+							className="rounded-3xl object-cover w-full h-full"
+							w="298"
+						/>
+					</div>
 					{/* details and title*/}
 					<div className="w-2/3">
 						{/* details */}
@@ -80,10 +99,13 @@ const FeaturedPosts = () => {
 
 				{/* Fourth */}
 				<div className="lg:h-1/3 flex justify-between gap-4">
-					<Image
-						src="featured4.jpeg"
-						className="rounded-3xl object-cover w-1/3 aspect-video"
-					/>
+					<div className="w-1/3 aspect-video">
+						<Image
+							src="featured4.jpeg"
+							className="rounded-3xl object-cover w-full h-full"
+							w="298"
+						/>
+					</div>
 					{/* details and title*/}
 					<div className="w-2/3">
 						{/* details */}
