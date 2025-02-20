@@ -1,34 +1,35 @@
 import { Link } from "react-router-dom";
+import MainCategories from "../components/MainCategories";
+import FeaturedPosts from "../components/FeaturedPosts";
 
 const Homepage = () => {
 	return (
-		<div className="mt-4 flex flex-col gap-4">
+		<div className="mt-4 flex flex-col gap-4 md:mt-0 md:gap-0 md:text-sm">
 			{/* BREADCRUMBS */}
 			<div className="flex gap-4">
 				<Link to="/">Home</Link>
 				<span>·</span>
-				<span className="text-cyan-800">Blogs and Articles</span>
+				<span className="text-cyan-600">Blogs and Articles</span>
 			</div>
 			{/* INTRODUCTION */}
 			<div className="flex items-center justify-between">
 				{/* titles */}
 				<div className="">
-					<h1 className="text-gray-800 text-2xl md:text-5xl lg:text-6xl font-bold">
-						Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+					<h1 className="text-gray-800 text-2xl md:text-4xl lg:text-5xl font-bold">
+						Lorem ipsum, dolor sit amet consectetur adipisicing elit.
 					</h1>
-					<p className="mt-8 text-md md:text-xl">
-						Voluptas, earum quia ad, beatae doloribus nisi eos delectus quaerat
-						omnis veniam nulla.
+					<p className="mt-8 text-base md:text-lg">
+						Lorem ipsum dolor, sit amet consectetur adipisicing elit. Fugit quos
+						impedit.
 					</p>
 				</div>
 				{/* animated button */}
-				<Link to="write" className="relative">
+				<Link to="write" className="relative hidden md:block">
 					<svg
 						viewBox="0 0 200 200"
 						width="200"
 						height="200"
-						// className="text-lg tracking-widest animate-spin animatedButton"
-						className="text-lg tracking-widest"
+						className="text-lg tracking-widest animate-spin animatedButton"
 					>
 						<path
 							id="circlePath"
@@ -66,7 +67,9 @@ const Homepage = () => {
 					</button>
 				</Link>
 			</div>
-			{/* FEATURED POSTS */}
+
+			<MainCategories />
+			<FeaturedPosts />
 			{/* POST LIST */}
 		</div>
 	);
