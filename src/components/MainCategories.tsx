@@ -29,19 +29,19 @@ const MainCategories = () => {
 				</Link>
 				<Link
 					to="/posts?cat=databases"
-					className="hover:bg-cyan-50 rounded-full px-4 py-2"
+					className="hover:bg-cyan-50 rounded-full px-4 py-2 hidden lg:block"
 				>
 					Databases
 				</Link>
 				<Link
 					to="/posts?cat=seo"
-					className="hover:bg-cyan-50 rounded-full px-4 py-2"
+					className="hover:bg-cyan-50 rounded-full px-4 py-2 hidden xl:block"
 				>
 					Search Engines
 				</Link>
 				<Link
 					to="/posts?cat=marketing"
-					className="hover:bg-cyan-50 rounded-full px-4 py-2"
+					className="hover:bg-cyan-50 rounded-full px-4 py-2 hidden 2xl:block"
 				>
 					Marketing
 				</Link>

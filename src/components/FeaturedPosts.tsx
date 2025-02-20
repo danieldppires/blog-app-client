@@ -31,7 +31,7 @@ const FeaturedPosts = () => {
 
 				<Link
 					to="/test"
-					className="text-xl lg:text-3xl font-semibold lg:font-bold"
+					className="text-xl md:text-3xl lg:text-3xl font-semibold lg:font-bold"
 				>
 					Lorem ipsum dolor sit amet consectetur adipisicing elit.
 				</Link>
@@ -51,20 +51,22 @@ const FeaturedPosts = () => {
 					{/* details and title*/}
 					<div className="w-2/3">
 						{/* details */}
-						<div className="flex items-center gap-4 text-sm mb-4">
+						<div className="flex items-center gap-4 text-sm mb-2 md:mb-4">
 							<h2 className="font-semibold">02.</h2>
 							<Link to="/" className="text-cyan-600">
 								Development
 							</Link>
 							<span className="text-gray-500 text-xs">2 days ago</span>
 						</div>
-						<Link
-							to="/test"
-							className="text-base sm:text-lg md:text-xl font-medium"
-						>
-							Officiis cupiditate maxime ipsum odit! Perspiciatis hic nemo
-							inventore?
-						</Link>
+						<div className="line-clamp-3 xl:line-clamp-4">
+							<Link
+								to="/test"
+								className="text-base sm:text-lg md:text-2xl lg:text-xl font-medium"
+							>
+								Officiis cupiditate maxime ipsum odit! Perspiciatis hic nemo
+								inventore? Lorem ipsum dolor sit amet modi eum aut.
+							</Link>
+						</div>
 					</div>
 				</div>
 
@@ -80,20 +82,22 @@ const FeaturedPosts = () => {
 					{/* details and title*/}
 					<div className="w-2/3">
 						{/* details */}
-						<div className="flex items-center gap-4 text-sm mb-4">
+						<div className="flex items-center gap-4 text-sm mb-2 md:mb-4">
 							<h2 className="font-semibold">03.</h2>
 							<Link to="/" className="text-cyan-600">
 								Web Design
 							</Link>
 							<span className="text-gray-500 text-xs">2 days ago</span>
 						</div>
-						<Link
-							to="/test"
-							className="text-base sm:text-lg md:text-xl font-medium"
-						>
-							Voluptate enim debitis porro nobis iure corrupti mollitia
-							assumenda.
-						</Link>
+						<div className="line-clamp-3 xl:line-clamp-4">
+							<Link
+								to="/test"
+								className="text-base sm:text-lg md:text-2xl lg:text-xl font-medium"
+							>
+								Voluptate enim debitis porro nobis iure corrupti mollitia
+								assumenda.
+							</Link>
+						</div>
 					</div>
 				</div>
 
@@ -109,20 +113,22 @@ const FeaturedPosts = () => {
 					{/* details and title*/}
 					<div className="w-2/3">
 						{/* details */}
-						<div className="flex items-center gap-4 text-sm mb-4">
+						<div className="flex items-center gap-4 text-sm mb-2 md:mb-4">
 							<h2 className="font-semibold">04.</h2>
 							<Link to="/" className="text-cyan-600">
 								Search Engines
 							</Link>
 							<span className="text-gray-500 text-xs">2 days ago</span>
 						</div>
-						<Link
-							to="/test"
-							className="text-base sm:text-lg md:text-xl font-medium"
-						>
-							Aliquid voluptate saepe quod quis neque assumenda mollitia eaque
-							harum adipisci cum. Nobis.
-						</Link>
+						<div className="line-clamp-3 xl:line-clamp-4">
+							<Link
+								to="/test"
+								className="text-base sm:text-lg md:text-2xl lg:text-xl font-medium"
+							>
+								Aliquid voluptate saepe quod quis neque assumenda mollitia eaque
+								harum adipisci cum. Nobis.
+							</Link>
+						</div>
 					</div>
 				</div>
 			</div>
