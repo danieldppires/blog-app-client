@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { IoCloseSharp } from "react-icons/io5";
 import { RxHamburgerMenu } from "react-icons/rx";
-import Image from "./Image";
+// import Image from "./Image";
 import { Link } from "react-router-dom";
 import { SignedIn, SignedOut, UserButton } from "@clerk/clerk-react";
 
@@ -12,11 +12,17 @@ const Navbar = () => {
 		<div className="w-full h-16 md:h-20 flex items-center justify-between">
 			{/* LOGO */}
 			<Link to="/" className="flex items-center gap-4 text-2xl font-bold">
-				<Image
+				{/* <Image
 					className=""
 					src="logo-blue-alternative.png"
-					w={32}
-					h={32}
+					w="32"
+					h="32"
+					alt="devinsights. logo"
+				/> */}
+				<img
+					src="logo-blue-alternative.png"
+					width={32}
+					height={32}
 					alt="devinsights. logo"
 				/>
 				<div className="flex">
