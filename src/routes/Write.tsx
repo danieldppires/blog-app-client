@@ -72,8 +72,6 @@ const Write = () => {
 			content: value,
 		};
 
-		console.log(data);
-
 		mutation.mutate(data);
 	};
 

@@ -1,25 +1,33 @@
+import { format } from "timeago.js";
 import Image from "./Image";
 
-const Comment = () => {
+interface Props {
+	comment: {
+		desc: string;
+		user: { username: string; img: string };
+		createdAt: Date;
+	};
+}
+
+const Comment = ({ comment }: Props) => {
 	return (
 		<div className="p-4 bg-slate-50 rounded-xl mb-8">
 			<div className="flex items-center gap-4">
-				<Image
-					src="userImg.jpeg"
-					className="w-10 h-10 rounded-full object-cover"
-					w="40"
-				/>
-				<span className="text-sm font-medium">John Doe</span>
-				<span className="text-xs text-gray-500">2 days ago</span>
+				{comment.user.img && (
+					<Image
+						src={comment.user.img}
+						className="w-10 h-10 rounded-full object-cover"
+						w="40"
+					/>
+				)}
+				<span className="text-sm font-medium">{comment.user.username}</span>
+				<span className="text-xs text-gray-500">
+					{format(comment.createdAt)}
+				</span>
 			</div>
 
 			<div className="mt-4">
-				<p className="text-sm">
-					Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit
-					officiis deleniti corrupti iure, hic cum excepturi est cupiditate
-					ipsa, consequatur illo alias eos ea, a iusto eaque? Laborum, debitis
-					ea!
-				</p>
+				<p className="text-sm">{comment.desc}</p>
 			</div>
 		</div>
 	);

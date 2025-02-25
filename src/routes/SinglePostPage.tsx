@@ -9,6 +9,7 @@ import { format } from "timeago.js";
 import DOMPurify from "dompurify";
 
 interface Post {
+	_id: any;
 	user: { username: string; img: string };
 	img: string;
 	title: string;
@@ -35,7 +36,6 @@ const SinglePostPage = () => {
 
 	if (isPending) return <p>Loading...</p>;
 	if (error) return <p>Something went wrong.</p>;
-	if (!data) return <p>Post not found.</p>;
 
 	return (
 		<div className="flex flex-col gap-8">
@@ -140,7 +140,7 @@ const SinglePostPage = () => {
 				</div>
 			</div>
 
-			<Comments />
+			<Comments postId={data._id} />
 		</div>
 	);
 };
