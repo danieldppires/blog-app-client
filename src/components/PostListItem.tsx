@@ -1,44 +1,59 @@
 import { Link } from "react-router-dom";
 import Image from "./Image";
+import { format } from "timeago.js";
 
-const PostListItem = () => {
+interface Props {
+	post: {
+		user: { username: string };
+		img: string;
+		title: string;
+		desc: string;
+		slug: string;
+		category: string;
+		createdAt: Date;
+	};
+}
+
+const PostListItem = ({ post }: Props) => {
 	return (
-		<div className="flex flex-col xl:flex-row gap-8">
-			<div className="md:hidden xl:block xl:w-1/3">
-				<Image
-					src="postImg.jpeg"
-					className="rounded-2xl object-cover"
-					w="735"
-				/>
-			</div>
+		<div className="flex flex-col xl:flex-row gap-8 mb-12">
+			{post.img && (
+				<div className="md:hidden xl:block xl:w-1/3">
+					<Image
+						src={post.img}
+						className="rounded-2xl object-cover aspect-video"
+						w="735"
+					/>
+				</div>
+			)}
 
 			{/* details */}
 			<div className="flex flex-col gap-4 xl:w-2/3">
-				<Link to="/posts/test" className="text-2xl md:text-3xl font-semibold">
-					Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima magnam
-					autem voluptatem, cum sit enim tempora.
+				<Link
+					to={`/posts/${post.slug}`}
+					className="text-2xl md:text-3xl font-semibold"
+				>
+					{post.title}
 				</Link>
 
 				<div className="flex items-center gap-2 text-gray-400 text-sm">
 					<span>Written by</span>
 					<Link to="/posts/test" className="text-cyan-600">
-						John Doe
+						{post.user?.username}
 					</Link>
 					<span>on</span>
 					<Link to="/posts/test" className="text-cyan-600">
-						Web Design
+						{post.category}
 					</Link>
-					<span>2 days ago</span>
+					<span>{format(post.createdAt)}</span>
 				</div>
 
-				<p className="">
-					Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam
-					perferendis, quidem aspernatur amet sit voluptate officia, quod illum
-					similique corporis facere aut expedita cupiditate molestias nostrum,
-					laudantium eaque harum dolorum.
-				</p>
+				<p className="">{post.desc}</p>
 
-				<Link to="/posts/test" className="text-cyan-600 underline text-xs">
+				<Link
+					to={`/posts/${post.slug}`}
+					className="text-cyan-600 underline text-xs"
+				>
 					Read More
 				</Link>
 			</div>

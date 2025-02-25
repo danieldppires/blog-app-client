@@ -1,127 +1,84 @@
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import Image from "../components/Image";
 import PostMenuActions from "../components/PostMenuActions";
 import Search from "../components/Search";
 import Comments from "../components/Comments";
+import axios from "axios";
+import { useQuery } from "@tanstack/react-query";
+import { format } from "timeago.js";
+import DOMPurify from "dompurify";
+
+interface Post {
+	user: { username: string; img: string };
+	img: string;
+	title: string;
+	desc: string;
+	content: string;
+	slug: string;
+	category: string;
+	createdAt: Date;
+}
+
+const fetchPost = async (slug: string) => {
+	const res = await axios.get(`${import.meta.env.VITE_API_URL}/posts/${slug}`);
+	return res.data as Post;
+};
 
 const SinglePostPage = () => {
+	const { slug } = useParams();
+
+	const { isPending, error, data } = useQuery({
+		queryKey: ["post", slug],
+		queryFn: () => fetchPost(slug as string),
+		enabled: !!slug, // Só executa a query se slug for válido (existir)
+	});
+
+	if (isPending) return <p>Loading...</p>;
+	if (error) return <p>Something went wrong.</p>;
+	if (!data) return <p>Post not found.</p>;
+
 	return (
 		<div className="flex flex-col gap-8">
 			{/* detail */}
 			<div className="flex gap-8">
 				<div className="lg:w-3/5 flex flex-col gap-8">
 					<h1 className="text-xl md:text-2xl xl:text-3xl 2xl:text-4xl font-semibold">
-						Lorem ipsum dolor, sit amet consectetur adipisicing elit. Saepe
-						maiores odit sed repellat labore.
+						{data.title}
 					</h1>
 
 					<div className="flex items-center gap-2 text-gray-400 text-xs md:text-sm">
 						<span>Written by</span>
 						<Link to="/" className="text-cyan-600">
-							John Doe
+							{data.user.username}
 						</Link>
 						<span>on</span>
 						<Link to="/" className="text-cyan-600">
-							Web Design
+							{data.category}
 						</Link>
-						<span>2 days ago</span>
+						<span>{format(data.createdAt)}</span>
 					</div>
 
-					<p className="text-gray-500 font-medium">
-						Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi
-						perspiciatis vel autem, dolore, mollitia iusto quia, quod eaque
-						tenetur nihil inventore minus eum unde quos sint delectus? Modi,
-						inventore fugiat.
-					</p>
+					<p className="text-gray-500 font-medium">{data.desc}</p>
 				</div>
 
-				<div className="hidden lg:block w-2/5">
-					<Image src="postImg.jpeg" w="600" className="rounded-3xl" />
-				</div>
+				{data.img && (
+					<div className="hidden lg:block w-2/5">
+						<Image
+							src={data.img}
+							w="600"
+							className="rounded-3xl aspect-video object-cover"
+						/>
+					</div>
+				)}
 			</div>
 
 			{/* content */}
 			<div className="flex flex-col md:flex-row gap-8">
 				{/* text */}
-				<div className="flex flex-col gap-6 text-justify">
-					<p>
-						Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur
-						fugit obcaecati libero ratione odit optio est ex consequuntur vitae,
-						temporibus earum. Provident unde enim at nostrum vero harum tempora
-						quibusdam. Lorem ipsum dolor sit amet consectetur adipisicing elit.
-						Consequatur fugit obcaecati libero ratione odit optio est ex
-						consequuntur vitae, temporibus earum. Provident unde enim at nostrum
-						vero harum tempora quibusdam. Consequatur fugit obcaecati libero
-						ratione odit optio est ex consequuntur vitae, temporibus earum.
-						Provident unde enim at nostrum vero harum tempora quibusdam.
-					</p>
-					<p>
-						Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur
-						fugit obcaecati libero ratione odit optio est ex consequuntur vitae,
-						temporibus earum. Provident unde enim at nostrum vero harum tempora
-						quibusdam. Lorem ipsum dolor sit amet consectetur adipisicing elit.
-						Consequatur fugit obcaecati libero ratione odit optio est ex
-						consequuntur vitae, temporibus earum. Provident unde enim at nostrum
-						vero harum tempora quibusdam. Consequatur fugit obcaecati libero
-						ratione odit optio est ex consequuntur vitae, temporibus earum.
-						Provident unde enim at nostrum vero harum tempora quibusdam.
-					</p>
-					<p>
-						Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur
-						fugit obcaecati libero ratione odit optio est ex consequuntur vitae,
-						temporibus earum. Provident unde enim at nostrum vero harum tempora
-						quibusdam. Lorem ipsum dolor sit amet consectetur adipisicing elit.
-						Consequatur fugit obcaecati libero ratione odit optio est ex
-						consequuntur vitae, temporibus earum. Provident unde enim at nostrum
-						vero harum tempora quibusdam. Consequatur fugit obcaecati libero
-						ratione odit optio est ex consequuntur vitae, temporibus earum.
-						Provident unde enim at nostrum vero harum tempora quibusdam.
-					</p>
-					<p>
-						Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur
-						fugit obcaecati libero ratione odit optio est ex consequuntur vitae,
-						temporibus earum. Provident unde enim at nostrum vero harum tempora
-						quibusdam. Lorem ipsum dolor sit amet consectetur adipisicing elit.
-						Consequatur fugit obcaecati libero ratione odit optio est ex
-						consequuntur vitae, temporibus earum. Provident unde enim at nostrum
-						vero harum tempora quibusdam. Consequatur fugit obcaecati libero
-						ratione odit optio est ex consequuntur vitae, temporibus earum.
-						Provident unde enim at nostrum vero harum tempora quibusdam.
-					</p>
-					<p>
-						Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur
-						fugit obcaecati libero ratione odit optio est ex consequuntur vitae,
-						temporibus earum. Provident unde enim at nostrum vero harum tempora
-						quibusdam. Lorem ipsum dolor sit amet consectetur adipisicing elit.
-						Consequatur fugit obcaecati libero ratione odit optio est ex
-						consequuntur vitae, temporibus earum. Provident unde enim at nostrum
-						vero harum tempora quibusdam. Consequatur fugit obcaecati libero
-						ratione odit optio est ex consequuntur vitae, temporibus earum.
-						Provident unde enim at nostrum vero harum tempora quibusdam.
-					</p>
-					<p>
-						Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur
-						fugit obcaecati libero ratione odit optio est ex consequuntur vitae,
-						temporibus earum. Provident unde enim at nostrum vero harum tempora
-						quibusdam. Lorem ipsum dolor sit amet consectetur adipisicing elit.
-						Consequatur fugit obcaecati libero ratione odit optio est ex
-						consequuntur vitae, temporibus earum. Provident unde enim at nostrum
-						vero harum tempora quibusdam. Consequatur fugit obcaecati libero
-						ratione odit optio est ex consequuntur vitae, temporibus earum.
-						Provident unde enim at nostrum vero harum tempora quibusdam.
-					</p>
-					<p>
-						Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur
-						fugit obcaecati libero ratione odit optio est ex consequuntur vitae,
-						temporibus earum. Provident unde enim at nostrum vero harum tempora
-						quibusdam. Lorem ipsum dolor sit amet consectetur adipisicing elit.
-						Consequatur fugit obcaecati libero ratione odit optio est ex
-						consequuntur vitae, temporibus earum. Provident unde enim at nostrum
-						vero harum tempora quibusdam. Consequatur fugit obcaecati libero
-						ratione odit optio est ex consequuntur vitae, temporibus earum.
-						Provident unde enim at nostrum vero harum tempora quibusdam.
-					</p>
-				</div>
+				<div
+					className="flex flex-col gap-6 text-justify"
+					dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(data.content) }}
+				></div>
 
 				{/* menu */}
 				<div className="px-4 h-max sticky top-8 text-sm">
@@ -129,14 +86,16 @@ const SinglePostPage = () => {
 
 					<div className="flex flex-col gap-4">
 						<div className="flex items-center gap-6">
-							<Image
-								src="userImg.jpeg"
-								className="w-12 h-12 rounded-full object-cover"
-								w="48"
-								h="48"
-							/>
+							{data.user.img && (
+								<Image
+									src={data.user.img}
+									className="w-12 h-12 rounded-full object-cover"
+									w="48"
+									h="48"
+								/>
+							)}
 							<Link to="/" className="text-cyan-600">
-								John Doe
+								{data.user.username}
 							</Link>
 						</div>
 						<p className="text-xs text-gray-500">
