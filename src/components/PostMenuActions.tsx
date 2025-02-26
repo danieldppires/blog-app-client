@@ -9,8 +9,14 @@ import {
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
+interface Post {
+	_id: string;
+	user: {
+		username: string;
+	};
+}
 interface Props {
-	post: any;
+	post: Post;
 }
 
 const PostMenuActions = ({ post }: Props) => {
@@ -26,15 +32,25 @@ const PostMenuActions = ({ post }: Props) => {
 		queryKey: ["savedPosts"],
 		queryFn: async () => {
 			const token = await getToken();
-			return axios.get(`${import.meta.env.VITE_API_URL}/users/saved`, {
-				headers: {
-					Authorization: `Bearer ${token}`,
-				},
-			});
+
+			const response = await axios.get(
+				`${import.meta.env.VITE_API_URL}/users/saved`,
+				{
+					headers: {
+						Authorization: `Bearer ${token}`,
+					},
+				}
+			);
+
+			return response.data;
 		},
 	});
 
-	const isSaved = savedPosts?.data?.some((p: any) => p === post._id) || false;
+	const isAdmin = user?.publicMetadata?.role === "admin" || false;
+
+	//const isSaved = savedPosts?.data?.some((p: any) => p === post._id) || false;
+	const isSaved =
+		Array.isArray(savedPosts) && savedPosts.some((p) => p === post._id);
 
 	const deleteMutation = useMutation({
 		mutationFn: async () => {
@@ -118,7 +134,7 @@ const PostMenuActions = ({ post }: Props) => {
 					</div>
 				)}
 
-				{user && post.user.username === user.username && (
+				{user && (post?.user?.username === user?.username || isAdmin) && (
 					<div
 						onClick={handleDelete}
 						className="flex gap-2 items-center text-sm cursor-pointer text-red-500"
