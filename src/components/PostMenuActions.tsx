@@ -4,7 +4,6 @@ import axios from "axios";
 import {
 	PiBookmarkSimple,
 	PiBookmarkSimpleFill,
-	PiBookmarkSimpleLight,
 	PiStar,
 	PiStarFill,
 	PiTrash,
