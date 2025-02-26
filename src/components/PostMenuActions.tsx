@@ -2,8 +2,11 @@ import { useAuth, useUser } from "@clerk/clerk-react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
 import {
+	PiBookmarkSimple,
 	PiBookmarkSimpleFill,
 	PiBookmarkSimpleLight,
+	PiStar,
+	PiStarFill,
 	PiTrash,
 } from "react-icons/pi";
 import { useNavigate } from "react-router-dom";
@@ -14,6 +17,8 @@ interface Post {
 	user: {
 		username: string;
 	};
+	isFeatured: boolean;
+	slug: string;
 }
 interface Props {
 	post: Post;
@@ -51,6 +56,8 @@ const PostMenuActions = ({ post }: Props) => {
 	//const isSaved = savedPosts?.data?.some((p: any) => p === post._id) || false;
 	const isSaved =
 		Array.isArray(savedPosts) && savedPosts.some((p) => p === post._id);
+
+	const isFeatured = post.isFeatured || false;
 
 	const deleteMutation = useMutation({
 		mutationFn: async () => {
@@ -97,8 +104,36 @@ const PostMenuActions = ({ post }: Props) => {
 		},
 	});
 
+	const featureMutation = useMutation({
+		mutationFn: async () => {
+			const token = await getToken();
+			return axios.patch(
+				`${import.meta.env.VITE_API_URL}/posts/feature`,
+				{
+					postId: post._id,
+				},
+				{
+					headers: {
+						Authorization: `Bearer ${token}`,
+					},
+				}
+			);
+		},
+		onSuccess: () => {
+			queryClient.invalidateQueries({ queryKey: ["post", post.slug] });
+		},
+		onError: (error: any) => {
+			const errorMessage = error.response?.data || "An error occurred";
+			toast.error(errorMessage);
+		},
+	});
+
 	const handleDelete = () => {
 		deleteMutation.mutate();
+	};
+
+	const handleFeature = () => {
+		featureMutation.mutate();
 	};
 
 	const handleSave = () => {
@@ -125,10 +160,23 @@ const PostMenuActions = ({ post }: Props) => {
 						{isSaved ? (
 							<PiBookmarkSimpleFill size={20} />
 						) : (
-							<PiBookmarkSimpleLight size={20} />
+							<PiBookmarkSimple size={20} />
 						)}
 						<span>Save this post</span>
 						{saveMutation.isPending && (
+							<span className="text-xs">(in progress...)</span>
+						)}
+					</div>
+				)}
+
+				{isAdmin && (
+					<div
+						onClick={handleFeature}
+						className="flex gap-2 items-center text-sm cursor-pointer"
+					>
+						{isFeatured ? <PiStarFill size={20} /> : <PiStar size={20} />}
+						<span>Feature</span>
+						{featureMutation.isPending && (
 							<span className="text-xs">(in progress...)</span>
 						)}
 					</div>

@@ -102,10 +102,11 @@ const Comments = ({ postId }: Props) => {
 									username: user?.username ?? "Unknown User",
 								},
 							}}
+							postId={postId}
 						/>
 					)}
 					{data.map((comment: any) => (
-						<Comment key={comment._id} comment={comment} />
+						<Comment key={comment._id} comment={comment} postId={postId} />
 					))}
 				</>
 			)}
