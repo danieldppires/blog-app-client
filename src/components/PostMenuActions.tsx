@@ -16,7 +16,7 @@ interface Post {
 	user: {
 		username: string;
 	};
-	isFeatured: boolean;
+	isFeatured?: boolean;
 	slug: string;
 }
 interface Props {

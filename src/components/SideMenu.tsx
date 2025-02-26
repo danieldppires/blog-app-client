@@ -1,7 +1,33 @@
-import { Link } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 import Search from "./Search";
 
 const SideMenu = () => {
+	const [searchParams, setSearchParams] = useSearchParams();
+
+	const handleFilterChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+		const newSortValue = event.target.value;
+		const currentSortValue = searchParams.get("sort");
+
+		if (currentSortValue !== newSortValue) {
+			setSearchParams({
+				...Object.fromEntries(searchParams.entries()),
+				sort: event.target.value,
+			});
+		}
+	};
+
+	const handleCategoryChange = (category: string) => {
+		const newCategoryValue = category;
+		const currentCategoryValue = searchParams.get("cat");
+
+		if (currentCategoryValue !== newCategoryValue) {
+			setSearchParams({
+				...Object.fromEntries(searchParams.entries()),
+				cat: category,
+			});
+		}
+	};
+
 	return (
 		<div className="px-4 h-max sticky top-8">
 			<h2 className="mb-4 text-sm font-medium">Search</h2>
@@ -13,6 +39,7 @@ const SideMenu = () => {
 					<input
 						type="radio"
 						name="sort"
+						onChange={handleFilterChange}
 						value="newest"
 						className="appearance-none w-4 h-4 border-2 bg-white border-cyan-600 cursor-pointer rounded-sm checked:bg-cyan-600"
 					/>
@@ -23,6 +50,7 @@ const SideMenu = () => {
 					<input
 						type="radio"
 						name="sort"
+						onChange={handleFilterChange}
 						value="popular"
 						className="appearance-none w-4 h-4 border-2 bg-white border-cyan-600 cursor-pointer rounded-sm checked:bg-cyan-600"
 					/>
@@ -33,6 +61,7 @@ const SideMenu = () => {
 					<input
 						type="radio"
 						name="sort"
+						onChange={handleFilterChange}
 						value="trending"
 						className="appearance-none w-4 h-4 border-2 bg-white border-cyan-600 cursor-pointer rounded-sm checked:bg-cyan-600"
 					/>
@@ -43,6 +72,7 @@ const SideMenu = () => {
 					<input
 						type="radio"
 						name="sort"
+						onChange={handleFilterChange}
 						value="oldest"
 						className="appearance-none w-4 h-4 border-2 bg-white border-cyan-600 cursor-pointer rounded-sm checked:bg-cyan-600"
 					/>
@@ -52,24 +82,59 @@ const SideMenu = () => {
 
 			<h2 className="mt-8 mb-4 text-sm font-medium">Categories</h2>
 			<div className="flex flex-col gap-2 text-sm">
-				<Link to="/posts" className="underline">
+				<span
+					className="underline cursor-pointer"
+					onClick={() => {
+						handleCategoryChange("general");
+					}}
+				>
 					All
-				</Link>
-				<Link to="/posts?cat=web-design" className="underline">
+				</span>
+
+				<span
+					className="underline cursor-pointer"
+					onClick={() => {
+						handleCategoryChange("web-design");
+					}}
+				>
 					Web Design
-				</Link>
-				<Link to="/posts?cat=development" className="underline">
+				</span>
+
+				<span
+					className="underline cursor-pointer"
+					onClick={() => {
+						handleCategoryChange("development");
+					}}
+				>
 					Development
-				</Link>
-				<Link to="/posts?cat=databases" className="underline">
+				</span>
+
+				<span
+					className="underline cursor-pointer"
+					onClick={() => {
+						handleCategoryChange("databases");
+					}}
+				>
 					Databases
-				</Link>
-				<Link to="/posts?cat=seo" className="underline">
+				</span>
+
+				<span
+					className="underline cursor-pointer"
+					onClick={() => {
+						handleCategoryChange("seo");
+					}}
+				>
 					Search Engines
-				</Link>
-				<Link to="/posts?cat=marketing" className="underline">
+				</span>
+
+				<span
+					className="underline cursor-pointer"
+					onClick={() => {
+						handleCategoryChange("marketing");
+					}}
+				>
 					Marketing
-				</Link>
+				</span>
 			</div>
 		</div>
 	);
