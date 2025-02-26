@@ -1,13 +1,18 @@
 import { useState } from "react";
 import PostList from "../components/PostList";
 import SideMenu from "../components/SideMenu";
+import { useSearchParams } from "react-router-dom";
 
 const PostListPage = () => {
 	const [open, setOpen] = useState(false);
 
+	const [searchParams] = useSearchParams();
+
 	return (
 		<div className="">
-			<h1 className="mb-8 text-2xl">Development Blog</h1>
+			<h1 className="mb-8 text-2xl">
+				{searchParams.get("cat")?.toUpperCase() ?? "All Posts"}
+			</h1>
 
 			<button
 				onClick={() => setOpen((prev) => !prev)}

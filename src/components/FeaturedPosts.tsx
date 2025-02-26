@@ -43,7 +43,7 @@ const FeaturedPosts = () => {
 					<Link to={`/posts/${posts[0].slug}`}>
 						<Image
 							src={posts[0].img}
-							className="rounded-3xl object-cover"
+							className="rounded-3xl object-cover aspect-video"
 							w="895"
 							// O ideal é colocar o tamanho máximo que a imagem poderá ter
 							// O usuário poderá fazer o upload de uma imagem bem grande, mas se ela
@@ -80,16 +80,16 @@ const FeaturedPosts = () => {
 			</div>
 
 			{/* Others */}
-			<div className="w-full lg:w-1/2 flex flex-col gap-4">
+			<div className="w-full lg:w-1/2 flex flex-col gap-12">
 				{/* Second */}
 				{posts[1] && (
-					<div className="lg:h-1/3 flex justify-between gap-4">
-						<div className="w-1/3 aspect-video">
+					<div className="flex justify-between gap-4">
+						<div className="w-1/3">
 							{posts[1].img && (
 								<Link to={`/posts/${posts[1].slug}`}>
 									<Image
 										src={posts[1].img}
-										className="rounded-3xl object-cover w-full h-full"
+										className="rounded-3xl object-cover aspect-video"
 										w="298"
 									/>
 								</Link>
@@ -124,13 +124,13 @@ const FeaturedPosts = () => {
 
 				{/* Third */}
 				{posts[2] && (
-					<div className="lg:h-1/3 flex justify-between gap-4">
-						<div className="w-1/3 aspect-video">
+					<div className="flex justify-between gap-4">
+						<div className="w-1/3">
 							{posts[2].img && (
 								<Link to={`/posts/${posts[2].slug}`}>
 									<Image
 										src={posts[2].img}
-										className="rounded-3xl object-cover w-full h-full"
+										className="rounded-3xl object-cover aspect-video"
 										w="298"
 									/>
 								</Link>
@@ -165,13 +165,13 @@ const FeaturedPosts = () => {
 
 				{/* Fourth */}
 				{posts[3] && (
-					<div className="lg:h-1/3 flex justify-between gap-4">
-						<div className="w-1/3 aspect-video">
+					<div className="flex justify-between gap-4">
+						<div className="w-1/3">
 							{posts[3].img && (
 								<Link to={`/posts/${posts[3].slug}`}>
 									<Image
 										src={posts[3].img}
-										className="rounded-3xl object-cover w-full h-full"
+										className="rounded-3xl object-cover aspect-video"
 										w="298"
 									/>
 								</Link>

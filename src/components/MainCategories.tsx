@@ -1,11 +1,10 @@
-import { IoSearch } from "react-icons/io5";
 import { Link } from "react-router-dom";
 import Search from "./Search";
 
 const MainCategories = () => {
 	return (
 		<div
-			className="flex bg-white rounded-full p-3 shadow-lg items-center 
+			className="hidden md:flex bg-white rounded-full p-3 shadow-lg items-center 
 			justify-center gap-6"
 		>
 			{/* links */}
