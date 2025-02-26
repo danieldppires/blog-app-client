@@ -19,11 +19,13 @@ const PostListItem = ({ post }: Props) => {
 		<div className="flex flex-col xl:flex-row gap-8 mb-12">
 			{post.img && (
 				<div className="md:hidden xl:block xl:w-1/3">
-					<Image
-						src={post.img}
-						className="rounded-2xl object-cover aspect-video"
-						w="735"
-					/>
+					<Link to={`/posts/${post.slug}`}>
+						<Image
+							src={post.img}
+							className="rounded-2xl object-cover aspect-video"
+							w="735"
+						/>
+					</Link>
 				</div>
 			)}
 
@@ -38,11 +40,14 @@ const PostListItem = ({ post }: Props) => {
 
 				<div className="flex items-center gap-2 text-gray-400 text-sm">
 					<span>Written by</span>
-					<Link to="/posts/test" className="text-cyan-600">
+					<Link
+						to={`/posts?author=${post.user.username}`}
+						className="text-cyan-600"
+					>
 						{post.user?.username}
 					</Link>
 					<span>on</span>
-					<Link to="/posts/test" className="text-cyan-600">
+					<Link to={`/posts?cat=${post.category}`} className="text-cyan-600">
 						{post.category}
 					</Link>
 					<span>{format(post.createdAt)}</span>
